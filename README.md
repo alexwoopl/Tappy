@@ -36,11 +36,13 @@ Extra info:
 
 Assumptions:
 - A user will never tap off without tapping on first.
-- If a user taps on while already "tapped on" to another ride then their first ride is considered "incomplete"(ignoring timestamp)
-- When tapping on and then off the user's company ID and bus ID will not change.
-- The input contains complete information (that is if a user taps on in the input but not off we assume an incomplete ride and another input file wont have 'redemming' information)
+- An input csv is all on the same day
+- The input is always in chronological order.
+- Any Tap on, that has no tap off, will be considered incomplete!
+- When tapping on and then off the user's company ID, bus ID and PAN will not change.
+- The input contains complete information (that is if a user taps on in the input but not off we assume an incomplete ride and another input file wont have 'redeeming' information)
 - The input file will be of reasonable length (I will not put a length restriction)
-- An incomplete ride will output "N/A" for 'duration' and 'ToStopId'
+- An incomplete ride will output "N/A" for 'duration', 'Finished' and 'ToStopId'
 - All error messages should be printed to console
 - If a CSV is given it will be correctly formatted (content and filename valid and existing).
 - The output file is always next to the input file and named "Trips.csv".

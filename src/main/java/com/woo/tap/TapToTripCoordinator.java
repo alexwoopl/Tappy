@@ -1,5 +1,8 @@
 package com.woo.tap;
 
+import com.woo.tap.io.input.IInputHandler;
+import com.woo.tap.io.output.IOutputHandler;
+import com.woo.tap.logic.ITapToTripLogic;
 import org.apache.commons.csv.CSVRecord;
 
 public class TapToTripCoordinator implements ITapToTripCoordinator {

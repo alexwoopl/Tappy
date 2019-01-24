@@ -56,7 +56,7 @@ public class MainTest {
     }
 
     @Test
-    public void givenASingleLineTapCSV__ThenTheTripCSVShouldBeMade() throws IOException {
+    public void givenAnIncompleteTapCSV__ThenTheTripCSVShouldBeMade() throws IOException {
         String inputFilename = baseInputFilePath + "OneLineTap.csv";
         String expectedOutputFilename = baseExpectedOutputFilePath + "OneLineTrips.csv";
 
@@ -82,9 +82,39 @@ public class MainTest {
     }
 
     @Test
-    public void givenATapCSV__ThenTheTripCSVShouldBeMade() throws IOException {
+    public void givenATapCSVFromStop1To2__ThenTheTripCSVShouldBeMade() throws IOException {
 
-        String inputFilename = baseInputFilePath + "Tap.csv";
+        String inputFilename = baseInputFilePath + "Stop1To2.csv";
+        String expectedOutputFilename = baseExpectedOutputFilePath + "Trips.csv";
+
+        Main.main(new String[]{inputFilename});
+
+        File output = new File(outputFilename);
+        File expectedOutput = new File(expectedOutputFilename);
+        assertTrue("Output does not exist when it should.", output.exists());
+        assertTrue("Output did not match expected output.", FileUtils.contentEquals(output, expectedOutput));
+
+    }
+
+    @Test
+    public void givenATapCSVFromStop1To3__ThenTheTripCSVShouldBeMade() throws IOException {
+
+        String inputFilename = baseInputFilePath + "Stop1To3.csv";
+        String expectedOutputFilename = baseExpectedOutputFilePath + "Trips.csv";
+
+        Main.main(new String[]{inputFilename});
+
+        File output = new File(outputFilename);
+        File expectedOutput = new File(expectedOutputFilename);
+        assertTrue("Output does not exist when it should.", output.exists());
+        assertTrue("Output did not match expected output.", FileUtils.contentEquals(output, expectedOutput));
+
+    }
+
+    @Test
+    public void givenATapCSVFromStop2To3__ThenTheTripCSVShouldBeMade() throws IOException {
+
+        String inputFilename = baseInputFilePath + "Stop2To3.csv";
         String expectedOutputFilename = baseExpectedOutputFilePath + "Trips.csv";
 
         Main.main(new String[]{inputFilename});
@@ -110,7 +140,6 @@ public class MainTest {
         assertTrue("Output did not match expected output.", FileUtils.contentEquals(output, expectedOutput));
 
     }
-
 
     @Test
     public void givenNoTapCSV__ThenErrorMessageShouldBeDisplayed() throws IOException {
