@@ -2,7 +2,7 @@ package com.woo.tap;
 
 import com.woo.tap.io.input.CSVInputHandler;
 import com.woo.tap.io.input.IInputHandler;
-import com.woo.tap.io.output.CSVOutputHandler;
+import com.woo.tap.io.output.TripOutputHandler;
 import com.woo.tap.io.output.IOutputHandler;
 import com.woo.tap.logic.ITapToTripLogic;
 import com.woo.tap.logic.TapToTripLogic;
@@ -21,7 +21,7 @@ public class TapToTripCoordinator implements ITapToTripCoordinator {
     public TapToTripCoordinator(){
         inputHandler = new CSVInputHandler();
         tapToTripLogic = new TapToTripLogic();
-        outputHandler = new CSVOutputHandler();
+        outputHandler = new TripOutputHandler();
     }
 
     /**

@@ -6,12 +6,12 @@ public enum OUTPUT_HEADERS {
     FINISHED("Finished"),
     DURATION_SECS("DurationSecs"),
     FROM_STOP_ID("FromStopId"),
-    To_STOP_ID("ToStopId"),
+    TO_STOP_ID("ToStopId"),
     CHARGE_AMOUNT("ChargeAmount"),
     COMPANY_ID("CompanyId"),
     BUS_ID("BusID"),
     PAN("PAN"),
-    STATUS("STATUS");
+    STATUS("Status");
 
 
     private final String text;

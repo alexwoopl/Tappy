@@ -34,7 +34,7 @@ public class MainTest {
     //Test resource properties
     private String baseInputFilePath = "Test/testresources/input/";
     private String baseExpectedOutputFilePath = "Test/testresources/expectedoutput/";
-    private String outputFilename = baseInputFilePath + "Trips.csv";
+    private String outputFilename =  "Trips.csv";
 
     @Before
     public void setUpStreams() {
