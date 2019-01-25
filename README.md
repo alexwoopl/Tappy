@@ -45,7 +45,7 @@ Assumptions:
 - An incomplete ride will output "N/A" for 'duration', 'Finished' and 'ToStopId'
 - All error messages should be printed to console
 - If a CSV is given it will be correctly formatted (content and filename valid and existing).
-- The output file is always next to the input file and named "Trips.csv".
+- The output file is always at source and named "Trips.csv".
 
 Tests supporting info:
 Link for test card numbers - http://support.worldpay.com/support/kb/bg/testandgolive/tgl5103.html

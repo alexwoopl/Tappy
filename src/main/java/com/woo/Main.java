@@ -4,11 +4,13 @@ import com.woo.tap.ITapToTripCoordinator;
 import com.woo.tap.TapToTripCoordinator;
 import com.woo.tap.errors.ERROR_MESSAGE;
 
+import java.io.IOException;
+
 public class Main {
 
     private static ITapToTripCoordinator tapToTrip;
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
 
         //Only initialize if there is an arg supplied
         if(args.length == 1){
