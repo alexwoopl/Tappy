@@ -5,5 +5,5 @@ import org.apache.commons.csv.CSVRecord;
 import java.util.List;
 
 public interface ITapToTripLogic {
-    List<CSVRecord> process(Iterable<CSVRecord> taps);
+    List<List<String>> process(Iterable<CSVRecord> taps);
 }

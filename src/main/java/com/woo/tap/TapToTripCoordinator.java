@@ -4,6 +4,7 @@ import com.woo.tap.io.input.CSVInputHandler;
 import com.woo.tap.io.input.IInputHandler;
 import com.woo.tap.io.output.IOutputHandler;
 import com.woo.tap.logic.ITapToTripLogic;
+import com.woo.tap.logic.TapToTripLogic;
 import org.apache.commons.csv.CSVRecord;
 
 import java.io.IOException;
@@ -17,6 +18,7 @@ public class TapToTripCoordinator implements ITapToTripCoordinator {
 
     public TapToTripCoordinator(){
         inputHandler = new CSVInputHandler();
+        tapToTripLogic = new TapToTripLogic();
     }
 
     /**
@@ -29,7 +31,7 @@ public class TapToTripCoordinator implements ITapToTripCoordinator {
         //Parse input CSV into dictionary(or list of models).
         List<CSVRecord> taps = inputHandler.handle(filename);
         //Gain output info from input.
-        List<CSVRecord> trips = tapToTripLogic.process(taps);
+        List<List<String>> trips = tapToTripLogic.process(taps);
         //Format output into csv & create the file.
         outputHandler.handle(trips);
 

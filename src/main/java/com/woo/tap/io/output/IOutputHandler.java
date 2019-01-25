@@ -1,7 +1,8 @@
 package com.woo.tap.io.output;
 
-import org.apache.commons.csv.CSVRecord;
+
+import java.util.List;
 
 public interface IOutputHandler {
-    void handle(Iterable<CSVRecord> trips);
+    void handle(List<List<String>> trips);
 }

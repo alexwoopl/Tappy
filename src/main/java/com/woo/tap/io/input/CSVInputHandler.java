@@ -23,10 +23,10 @@ public class CSVInputHandler implements IInputHandler {
 
         Reader in = new FileReader(filename);
 
-        CSVParser records = CSVFormat.DEFAULT.withFirstRecordAsHeader().parse(in);
-
+        CSVParser csv = CSVFormat.DEFAULT.withFirstRecordAsHeader().withTrim().parse(in);
+        List<CSVRecord> records = csv.getRecords();
         in.close();
 
-        return records.getRecords();
+        return records;
     }
 }
