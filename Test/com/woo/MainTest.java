@@ -10,6 +10,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintStream;
+import java.text.ParseException;
 
 import static junit.framework.TestCase.assertEquals;
 import static junit.framework.TestCase.assertTrue;
@@ -56,7 +57,7 @@ public class MainTest {
     }
 
     @Test
-    public void givenAnIncompleteTapCSV__ThenTheTripCSVShouldBeMade() throws IOException {
+    public void givenAnIncompleteTapCSV__ThenTheTripCSVShouldBeMade() throws IOException, ParseException {
         String inputFilename = baseInputFilePath + "OneLineTap.csv";
         String expectedOutputFilename = baseExpectedOutputFilePath + "OneLineTrips.csv";
 
@@ -69,7 +70,7 @@ public class MainTest {
     }
 
     @Test
-    public void givenAnEmptyTapCSV__ThenTheTripCSVShouldBeMadeAndEmpty() throws IOException {
+    public void givenAnEmptyTapCSV__ThenTheTripCSVShouldBeMadeAndEmpty() throws IOException, ParseException {
         String inputFilename = baseInputFilePath + "EmptyTap.csv";
         String expectedOutputFilename = baseExpectedOutputFilePath + "EmptyTrips.csv";
 
@@ -82,7 +83,7 @@ public class MainTest {
     }
 
     @Test
-    public void givenATapCSVFromStop1To2__ThenTheTripCSVShouldBeMade() throws IOException {
+    public void givenATapCSVFromStop1To2__ThenTheTripCSVShouldBeMade() throws IOException, ParseException {
 
         String inputFilename = baseInputFilePath + "Stop1To2.csv";
         String expectedOutputFilename = baseExpectedOutputFilePath + "Trips.csv";
@@ -97,7 +98,7 @@ public class MainTest {
     }
 
     @Test
-    public void givenATapCSVFromStop1To3__ThenTheTripCSVShouldBeMade() throws IOException {
+    public void givenATapCSVFromStop1To3__ThenTheTripCSVShouldBeMade() throws IOException, ParseException {
 
         String inputFilename = baseInputFilePath + "Stop1To3.csv";
         String expectedOutputFilename = baseExpectedOutputFilePath + "Trips.csv";
@@ -112,7 +113,7 @@ public class MainTest {
     }
 
     @Test
-    public void givenATapCSVFromStop2To3__ThenTheTripCSVShouldBeMade() throws IOException {
+    public void givenATapCSVFromStop2To3__ThenTheTripCSVShouldBeMade() throws IOException, ParseException {
 
         String inputFilename = baseInputFilePath + "Stop2To3.csv";
         String expectedOutputFilename = baseExpectedOutputFilePath + "Trips.csv";
@@ -127,7 +128,7 @@ public class MainTest {
     }
 
     @Test
-    public void givenALongTapCSV__ThenTheTripCSVShouldBeMade() throws IOException {
+    public void givenALongTapCSV__ThenTheTripCSVShouldBeMade() throws IOException, ParseException {
 
         String inputFilename = baseInputFilePath + "LongTap.csv";
         String expectedOutputFilename = baseExpectedOutputFilePath + "LongTrips.csv";
@@ -142,7 +143,7 @@ public class MainTest {
     }
 
     @Test
-    public void givenNoTapCSV__ThenErrorMessageShouldBeDisplayed() throws IOException {
+    public void givenNoTapCSV__ThenErrorMessageShouldBeDisplayed() throws IOException, ParseException {
         String expectedOutputFilename = baseExpectedOutputFilePath + "LongTrips.csv";
 
         Main.main(new String[]{});
@@ -153,7 +154,7 @@ public class MainTest {
     }
 
     @Test
-    public void givenMultipleArgs__ThenErrorMessageShouldBeDisplayed() throws IOException {
+    public void givenMultipleArgs__ThenErrorMessageShouldBeDisplayed() throws IOException, ParseException {
         String expectedOutputFilename = baseExpectedOutputFilePath + "LongTrips.csv";
         String inputFilename1 = baseInputFilePath + "arg1";
         String inputFilename2 = baseInputFilePath + "arg2";

@@ -8,6 +8,7 @@ import com.woo.tap.logic.TapToTripLogic;
 import org.apache.commons.csv.CSVRecord;
 
 import java.io.IOException;
+import java.text.ParseException;
 import java.util.List;
 
 public class TapToTripCoordinator implements ITapToTripCoordinator {
@@ -26,7 +27,7 @@ public class TapToTripCoordinator implements ITapToTripCoordinator {
      * Translate the input into trips and outputs to a file named "Trips.csv"
      * @param filename - The location of the input tap csv
      */
-    public void createTripCSV(String filename) throws IOException {
+    public void createTripCSV(String filename) throws IOException, ParseException {
 
         //Parse input CSV into dictionary(or list of models).
         List<CSVRecord> taps = inputHandler.handle(filename);
