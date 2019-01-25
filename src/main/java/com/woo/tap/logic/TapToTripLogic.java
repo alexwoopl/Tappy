@@ -1,21 +1,41 @@
 package com.woo.tap.logic;
 
 import com.woo.tap.io.input.INPUT_HEADERS;
+import com.woo.tap.io.output.IFormatter;
+import com.woo.tap.io.output.TripFormatter;
 import com.woo.tap.models.Trip;
 import org.apache.commons.csv.CSVRecord;
 
-import java.text.DateFormat;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class TapToTripLogic implements ITapToTripLogic {
 
-    private ICostCalculator costCalculator = new TripCostCalculator();
-    private IStatusCalculator statusCalculator = new TripStatusCalculator();
+    private ICostCalculator costCalculator;
+    private IStatusCalculator statusCalculator;
+    private ITimeCalculator timeCalculator;
+    private IFormatter<Trip> formatter;
 
+    /**
+     * Initialize the classes properties
+     */
+    public TapToTripLogic(){
+        costCalculator = new TripCostCalculator();
+        statusCalculator = new TripStatusCalculator();
+        timeCalculator = new TimeCalculator();
+        formatter = new TripFormatter();
+    }
+
+    /**
+     * Main processing function for turning "Taps" into "Trips"
+     *
+     * See corresponding unit tests for input format.
+     *
+     * @param taps - tap records taken directly from input.
+     * @return the Trips created from taps, formatted into a list of Strings
+     * @throws ParseException
+     */
     public List<List<String>> process(Iterable<CSVRecord> taps) throws ParseException {
 
         if (taps == null) {
@@ -29,10 +49,10 @@ public class TapToTripLogic implements ITapToTripLogic {
         for (CSVRecord currentTap: taps) {
             String tapType = currentTap.get(INPUT_HEADERS.TAP_TYPE);
 
-            if(tapType.equals("ON")){
+            if(tapType.equals(TAP_TYPE.ON.toString())){
                 //Always add to the front of the list as the latest tap should be considered first.
                 tapsBeingProcessed.add(0, currentTap);
-            } else if (tapType.equals("OFF")) {
+            } else if (tapType.equals(TAP_TYPE.OFF.toString())) {
 
                 CSVRecord matchedTap = null;
                 //Find this taps matching "ON" tap based on company, bus and PAN.
@@ -43,27 +63,7 @@ public class TapToTripLogic implements ITapToTripLogic {
                             unpairedTap.get(INPUT_HEADERS.PAN).equals(currentTap.get(INPUT_HEADERS.PAN))
                     ){
 
-                        Trip trip = new Trip();
-                        trip.setStarted(unpairedTap.get(INPUT_HEADERS.DATE_TIME));
-                        trip.setFinished(currentTap.get(INPUT_HEADERS.DATE_TIME));
-                        trip.setFromStopId(unpairedTap.get(INPUT_HEADERS.STOP_ID));
-                        trip.setToStopId(currentTap.get(INPUT_HEADERS.STOP_ID));
-                        trip.setCompanyId(currentTap.get(INPUT_HEADERS.COMPANY_ID));
-                        trip.setBusId(currentTap.get(INPUT_HEADERS.BUS_ID));
-                        trip.setPAN(currentTap.get(INPUT_HEADERS.PAN));
-
-                        //Calc Duration
-                        trip.setDurationSecs(
-                                getSecondsBetween(
-                                        unpairedTap.get(INPUT_HEADERS.DATE_TIME),
-                                        currentTap.get(INPUT_HEADERS.DATE_TIME)
-                                )
-                        );
-                        //Calc Cost
-                        trip.setChargeAmount(costCalculator.findCost(trip.getFromStopId(), trip.getToStopId()));
-                        //Calc Status
-                        trip.setStatus(statusCalculator.calcStatus(trip.getFromStopId(), trip.getToStopId()));
-
+                        Trip trip = createTrip(currentTap, unpairedTap);
 
                         unformattedTrips.add(trip);
 
@@ -72,11 +72,59 @@ public class TapToTripLogic implements ITapToTripLogic {
                     }
                 }
 
+                //Remove the used tap.
                 tapsBeingProcessed.remove(matchedTap);
             }
         }
 
-        //AFTER FOR EACH; any remaining ON TAPS become incomplete, make record and store
+        //AFTER FOR EACH; any remaining TAPS become incomplete, make record and store
+        addUnpairedTapsAsIncompleteTrips(unformattedTrips, tapsBeingProcessed);
+
+        //Format and output
+        return formatter.format(unformattedTrips);
+    }
+
+    /**
+     * Creates the Trip given a start tap and end tap.
+     *
+     *
+     * @param currentTap - The OFF tap
+     * @param unpairedTap - The ON tap
+     * @return - Resulting Trip object.
+     * @throws ParseException
+     */
+    private Trip createTrip(CSVRecord currentTap, CSVRecord unpairedTap) throws ParseException {
+        Trip trip = new Trip();
+        trip.setStarted(unpairedTap.get(INPUT_HEADERS.DATE_TIME));
+        trip.setFinished(currentTap.get(INPUT_HEADERS.DATE_TIME));
+        trip.setFromStopId(unpairedTap.get(INPUT_HEADERS.STOP_ID));
+        trip.setToStopId(currentTap.get(INPUT_HEADERS.STOP_ID));
+        trip.setCompanyId(currentTap.get(INPUT_HEADERS.COMPANY_ID));
+        trip.setBusId(currentTap.get(INPUT_HEADERS.BUS_ID));
+        trip.setPAN(currentTap.get(INPUT_HEADERS.PAN));
+
+        //Calc Duration
+        trip.setDurationSecs(
+                timeCalculator.getSecondsBetween(
+                        unpairedTap.get(INPUT_HEADERS.DATE_TIME),
+                        currentTap.get(INPUT_HEADERS.DATE_TIME)
+                )
+        );
+        //Calc Cost
+        trip.setChargeAmount(costCalculator.findCost(trip.getFromStopId(), trip.getToStopId()));
+        //Calc Status
+        trip.setStatus(statusCalculator.calcStatus(trip.getFromStopId(), trip.getToStopId()));
+        return trip;
+    }
+
+    /**
+     *
+     * Adds the remaining elements from tapsBeingProcessed into the unformattedTrips as incomplete trips.
+     *
+     * @param unformattedTrips - List of Trips to add the incomplete trips to. MUTATED
+     * @param tapsBeingProcessed - left over records to be added as incomplete.
+     */
+    private void addUnpairedTapsAsIncompleteTrips(List<Trip> unformattedTrips, List<CSVRecord> tapsBeingProcessed) {
         if(!tapsBeingProcessed.isEmpty()){
             for(CSVRecord record : tapsBeingProcessed) {
                 Trip trip = new Trip();
@@ -96,58 +144,6 @@ public class TapToTripLogic implements ITapToTripLogic {
 
             }
         }
-
-        //Format and output
-        return format(unformattedTrips);
     }
 
-    private List<List<String>> format(List<Trip> unformattedTrips) {
-
-        List<List<String>> formattedTrips = new ArrayList<>();
-
-        for(Trip trip : unformattedTrips){
-            List<String> currentTrip = new ArrayList<>();
-
-            currentTrip.add(trip.getStarted());
-            currentTrip.add(trip.getFinished());
-            if(trip.getDurationSecs() != null) {
-                currentTrip.add(String.valueOf(trip.getDurationSecs()));
-            } else {
-                currentTrip.add(null);
-            }
-            currentTrip.add(trip.getFromStopId());
-            currentTrip.add(trip.getToStopId());
-            currentTrip.add(trip.getChargeAmount());
-            currentTrip.add(trip.getCompanyId());
-            currentTrip.add(trip.getBusId());
-            currentTrip.add(trip.getPAN());
-            currentTrip.add(trip.getStatus());
-
-            formattedTrips.add(currentTrip);
-        }
-
-        return formattedTrips;
-    }
-
-    /**
-     * Get's the second difference between two DateTime Strings of format:
-     * DD-MM-YYYY HH:MM:SS
-     *
-     * @param startDateTime - Starting DateTime
-     * @param endDateTime - End DateTime
-     * @return - The difference in seconds
-     */
-    private Integer getSecondsBetween(String startDateTime, String endDateTime) throws ParseException {
-
-        //22-01-2018 13:00:00
-        DateFormat stringToDateConverter = new SimpleDateFormat("dd-MM-YYYY HH:mm:ss");
-        Date start;
-        Date end;
-
-        start = stringToDateConverter.parse(startDateTime);
-        end = stringToDateConverter.parse(endDateTime);
-
-        return Math.toIntExact((end.getTime() - start.getTime())/1000);
-
-    }
 }

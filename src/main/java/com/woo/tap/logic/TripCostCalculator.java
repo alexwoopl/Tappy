@@ -28,6 +28,12 @@ public class TripCostCalculator implements ICostCalculator {
         }
     }
 
+    /**
+     * Given start and end stopId, determines the cost of the trip as per the pre-defined map.
+     * @param fromStopId - Start of trip stop
+     * @param toStopId - end of trip stop
+     * @return the cost of the trip
+     */
     @Override
     public String findCost(String fromStopId, String toStopId) {
 
@@ -44,6 +50,11 @@ public class TripCostCalculator implements ICostCalculator {
         return costKey;
     }
 
+    /**
+     * Get the maximum cost possible to pay for a trip from given stop
+     * @param fromStopId
+     * @return
+     */
     @Override
     public String getMaxCost(String fromStopId) {
 
