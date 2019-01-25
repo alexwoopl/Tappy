@@ -41,6 +41,21 @@ public class CSVInputHandlerTest {
     }
 
     @Test
+    public void givenEmptyInputFile__returnsEmptyList() throws IOException {
+        //SetUp
+        String inputFilename = baseInputFilePath + "EmptyTap.csv";
+        int expectedSize = 0;
+
+        //Execute
+        List<CSVRecord> result = csvInputHandler.handle(inputFilename);
+
+        //Confirm
+        assertNotNull("Null was returned.", result);
+        assertEquals("Size found: " + result.size() + ". Size expected: " + expectedSize, result.size(), expectedSize);
+
+    }
+
+    @Test
     public void givenACSV__shouldReturnACSVList() throws IOException {
         //SetUp
         String inputFilename = baseInputFilePath + "Stop1To2.csv";
