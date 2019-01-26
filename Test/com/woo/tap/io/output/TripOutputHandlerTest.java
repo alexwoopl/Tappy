@@ -37,12 +37,7 @@ public class TripOutputHandlerTest {
         System.setOut(originalOut);
 
         File file = new File(testOutputFile);
-        if(file.delete()){
-            System.out.println("Test file Trips.csv was cleaned.");
-        }
-        else{
-            System.out.println("unable to clean test files/No test files to clean");
-        }
+        file.delete();
     }
 
 

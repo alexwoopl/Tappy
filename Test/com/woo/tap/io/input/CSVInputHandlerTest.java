@@ -12,9 +12,6 @@ import java.util.List;
 import java.util.Map;
 
 import static org.junit.Assert.*;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
 
 /**
  * As this is a simple wrapper, we don't need to test the libraries functionality but rather our implementation.

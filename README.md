@@ -49,11 +49,10 @@ Tests supporting info:
 Link for test card numbers - http://support.worldpay.com/support/kb/bg/testandgolive/tgl5103.html
 
 How to run:
-- JAR:
-
-- Clone Repo
+*You will need Java 8*
+- JAR: Download the Jar file, then run this command: java -jar Tappy-1.0.jar <Input filepath>
 
 How to run tests:
-- Clone Repo
-
-- Test Harness
+*You will need Java 8 and Maven*
+- For automation: Clone the repo then go to repo root and run this command: mvn clean test
+- For manual running: open this in intellij and run the tests via IDE
