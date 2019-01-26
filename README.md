@@ -2,34 +2,36 @@
 
 <h2>NOTE:</h2>
 <p>
-I used the apache commons library for CSV formatting purposes, as this has a free use license.
-I could have created a couple classes for creating the CSV processing but I didn't feel this added much value and is a problem that has already been solved!
-I believe in using libraries instead of solving issues that have already been solved, especially if they're free.
-</p>
+I used the apache commons library for CSV formatting purposes, as this has a free use license. <\br>
+I could have created a couple classes for creating the CSV processing but I didn't feel this added much value and is a problem that has already been solved!<\br>
+I believe in using libraries instead of solving issues that have already been solved, especially if they're free.<\br>
+</p><\br>
   
 <h2>Spec:</h2>
-There are 3 stations;(1, 2 and 3)
-You "tap on" at the starting station and "tap off" at the end station.
-From station to station has different costs(same in both directions):
-1 <=> 2: $3.25
-1 <=> 3: $7.30
-2 <=> 3: $5.50
-NUM <=> SAME NUM: 0
+<p>
+There are 3 stations;(1, 2 and 3)<\br>
+You "tap on" at the starting station and "tap off" at the end station.<\br>
+From station to station has different costs(same in both directions):<\br>
+1 <=> 2: $3.25<\br>
+1 <=> 3: $7.30<\br>
+2 <=> 3: $5.50<\br>
+NUM <=> SAME NUM: 0<\br>
+</p><\br>
 
 <h2>Input:</h2>
-a csv describing a series of tap activities e.g.:
+a csv describing a series of tap activities e.g.:<\br>
 <p>
-ID, DateTimeUTC, TapType, StopId, CompanyId, BusID, PAN
-1, 22-01-2018 13:00:00, ON, Stop1, Company1, Bus37, 5500005555555559
-2, 22-01-2018 13:05:00, OFF, Stop2, Company1, Bus37, 5500005555555559
-</p>
+ID, DateTimeUTC, TapType, StopId, CompanyId, BusID, PAN<\br>
+1, 22-01-2018 13:00:00, ON, Stop1, Company1, Bus37, 5500005555555559<\br>
+2, 22-01-2018 13:05:00, OFF, Stop2, Company1, Bus37, 5500005555555559<\br>
+</p><\br>
 
 <h2>Output:</h2>
-a csv describing total trip info e.g.:
+a csv describing total trip info e.g.:<\br>
 '''
-Started,Finished,DurationSecs,FromStopId,ToStopId,ChargeAmount,CompanyId,BusID,PAN,Status
-22-01-2018 13:00:00,22-01-2018 13:05:00,900,Stop1,Stop2,$3.25,Company1,B37,5500005555555559,COMPLETED
-'''
+Started,Finished,DurationSecs,FromStopId,ToStopId,ChargeAmount,CompanyId,BusID,PAN,Status<\br>
+22-01-2018 13:00:00,22-01-2018 13:05:00,900,Stop1,Stop2,$3.25,Company1,B37,5500005555555559,COMPLETED<\br>
+'''<\br>
 
 <h2>Extra info:</h2>
 - An incomplete trip (tap on but no tap off) will charge the maximum possible from the tap on station
