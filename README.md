@@ -28,29 +28,29 @@
 <p>22-01-2018 13:00:00,22-01-2018 13:05:00,900,Stop1,Stop2,$3.25,Company1,B37,5500005555555559,COMPLETED</p>
 
 <h2>Extra info:</h2>
-* An incomplete trip (tap on but no tap off) will charge the maximum possible from the tap on station
-* Tapping on and off at the same station is a cancelled trip with no charge (time stamp doesn't matter)
+<p>- An incomplete trip (tap on but no tap off) will charge the maximum possible from the tap on station</p>
+<p>- Tapping on and off at the same station is a cancelled trip with no charge (time stamp doesn't matter)</p>
 
 
 <h2>Assumptions:</h2>
-- A user will never tap off without tapping on first.
-- An input csv is all on the same day (This seem like a daily batch job that would run)
-- The input is always in chronological order.
-- When tapping on and then off the user's company ID, bus ID and PAN will not change. (i.e. If those 3 match between and ON and OFF tap then it will be one "trip")
-- The input file will be of reasonable length (I will not put a length restriction)
-- An incomplete ride will output ""<i.e. an empty string> for 'duration', 'Finished' and 'ToStopId'
-- All error messages should be printed to console instead of logging
-- If a CSV is given it will be correctly formatted and with valid data (content and filename valid and existing).
-- The output file is ordered by endTime with INCOMPLETE trips at the end.
+<p>- A user will never tap off without tapping on first.</p>
+<p>- An input csv is all on the same day (This seem like a daily batch job that would run)</p>
+<p>- The input is always in chronological order.</p>
+<p>- When tapping on and then off the user's company ID, bus ID and PAN will not change. (i.e. If those 3 match between and ON and OFF tap then it will be one "trip")</p>
+<p>- The input file will be of reasonable length (I will not put a length restriction)</p>
+<p>- An incomplete ride will output ""<i.e. an empty string> for 'duration', 'Finished' and 'ToStopId'</p>
+<p>- All error messages should be printed to console instead of logging</p>
+<p>- If a CSV is given it will be correctly formatted and with valid data (content and filename valid and existing).</p>
+<p>- The output file is ordered by endTime with INCOMPLETE trips at the end.</p>
 
-<h2>Tests supporting info:</h2>
-Link for test card numbers - http://support.worldpay.com/support/kb/bg/testandgolive/tgl5103.html
+<h2>Tests supporting info:</h2></p>
+<p>Link for test card numbers - http://support.worldpay.com/support/kb/bg/testandgolive/tgl5103.html</p>
 
 <h2>How to run:</h2>
-*You will need Java 8*
-- JAR: Download the Jar file, then run this command: java -jar Tappy-1.0.jar <Input filepath>
+<p>*You will need Java 8*</p>
+<p>- JAR: Download the Jar file, then run this command: java -jar Tappy-1.0.jar <Input filepath></p>
 
 <h2>How to run tests:</h2>
-*You will need Java 8 and Maven*
-- For automation: Clone the repo then go to repo root and run this command: mvn clean test
-- For manual running: open this in intellij and run the tests via IDE
+<p>*You will need Java 8 and Maven*</p>
+<p>- For automation: Clone the repo then go to repo root and run this command: mvn clean test</p>
+<p>- For manual running: open this in intellij and run the tests via IDE</p>
