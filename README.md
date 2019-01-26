@@ -38,10 +38,10 @@
 <p>- The input is always in chronological order.</p>
 <p>- When tapping on and then off the user's company ID, bus ID and PAN will not change. (i.e. If those 3 match between and ON and OFF tap then it will be one "trip")</p>
 <p>- The input file will be of reasonable length (I will not put a length restriction)</p>
-<p>- An incomplete ride will output ""<i.e. an empty string> for 'duration', 'Finished' and 'ToStopId'</p>
+<p>- An incomplete ride will output ""(i.e. an empty string) for 'duration', 'Finished' and 'ToStopId'</p>
 <p>- All error messages should be printed to console instead of logging</p>
 <p>- If a CSV is given it will be correctly formatted and with valid data (content and filename valid and existing).</p>
-<p>- The output file is ordered by endTime with INCOMPLETE trips at the end.</p>
+<p>- The output file is ordered by 'Tap off time' with INCOMPLETE trips at the end.</p>
 
 <h2>Tests supporting info:</h2></p>
 <p>Link for test card numbers - http://support.worldpay.com/support/kb/bg/testandgolive/tgl5103.html</p>
