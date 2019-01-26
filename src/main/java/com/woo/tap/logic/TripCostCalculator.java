@@ -2,6 +2,7 @@ package com.woo.tap.logic;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.NoSuchElementException;
 
 public class TripCostCalculator implements ICostCalculator {
 
@@ -47,6 +48,10 @@ public class TripCostCalculator implements ICostCalculator {
             costKey = costMap.get("cancel");
         }
 
+        if(costKey == null){
+            throw new NoSuchElementException("Either: " + fromStopId + " Or: " + toStopId + " does not exist.");
+        }
+
         return costKey;
     }
 
@@ -57,6 +62,12 @@ public class TripCostCalculator implements ICostCalculator {
      */
     @Override
     public String getMaxCost(String fromStopId) {
+
+        String maxCost = maxCostMap.get(fromStopId);
+
+        if (maxCost == null) {
+            throw new NoSuchElementException("Bad input:" + fromStopId + "as fromStopId");
+        }
 
         return maxCostMap.get(fromStopId);
 

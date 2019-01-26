@@ -18,10 +18,10 @@ public class TripStatusCalculator implements IStatusCalculator {
     @Override
     public String calcStatus(String fromStopId, String toStopId) {
 
-        if(toStopId == null){
-            return INCOMPLETE_STATUS;
-        } else if(fromStopId.equals(toStopId)) {
+        if(fromStopId.equals(toStopId)){
             return CANCELLED_STATUS;
+        } else if(toStopId == null) {
+            return INCOMPLETE_STATUS;
         } else {
             return COMPLETED_STATUS;
         }
