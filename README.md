@@ -1,7 +1,7 @@
 <h1>Semi-boiled down Requirements:</h1>
 
 <h2>NOTE:</h2>
-<p>I used the apache commons library for CSV formatting purposes, as this has a free use license. </p>
+<p>I used the apache commons library for CSV reading/writing purposes, as this has a free use license. </p>
 <p>I could have created a couple classes for creating the CSV processing but I didn't feel this added much value and is a problem that has already been solved!</p>
 <p>I believe in using libraries instead of solving issues that have already been solved, especially if they're free.</p>
 
