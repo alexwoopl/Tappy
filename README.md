@@ -52,5 +52,7 @@
 
 <h2>How to run tests:</h2>
 <p>*You will need Java 8 and Maven*</p>
-<p>- For automation: Clone the repo then go to repo root and run this command: mvn clean test</p>
+<p>- For automation: Clone the repo (Ensure its managed as maven project) then go to repo root and run this command: mvn clean test</p>
+<p>   For more specific class testing, check the "Test" folder for test classes.</p>
+<p>   To run scenario tests only: mvn clean test -Dtest=MainTest
 <p>- For manual running: open this in intellij and run the tests via IDE</p>
