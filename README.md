@@ -1,11 +1,10 @@
 <h1>Semi-boiled down Requirements:</h1>
 
 <h2>NOTE:</h2>
-<p>
-I used the apache commons library for CSV formatting purposes, as this has a free use license. 
-I could have created a couple classes for creating the CSV processing but I didn't feel this added much value and is a problem that has already been solved!
-I believe in using libraries instead of solving issues that have already been solved, especially if they're free.
-</p>
+<p>I used the apache commons library for CSV formatting purposes, as this has a free use license. </p>
+<p>I could have created a couple classes for creating the CSV processing but I didn't feel this added much value and is a problem that has already been solved!</p>
+<p>I believe in using libraries instead of solving issues that have already been solved, especially if they're free.</p>
+
   
 <h2>Spec:</h2>
 <p>There are 3 stations;(1, 2 and 3)</p>
@@ -18,19 +17,16 @@ I believe in using libraries instead of solving issues that have already been so
 
 
 <h2>Input:</h2>
-a csv describing a series of tap activities e.g.:
-<p>
-ID, DateTimeUTC, TapType, StopId, CompanyId, BusID, PAN
-1, 22-01-2018 13:00:00, ON, Stop1, Company1, Bus37, 5500005555555559
-2, 22-01-2018 13:05:00, OFF, Stop2, Company1, Bus37, 5500005555555559
+<p>a csv describing a series of tap activities e.g.:
+<p>ID, DateTimeUTC, TapType, StopId, CompanyId, BusID, PAN
+`1, 22-01-2018 13:00:00, ON, Stop1, Company1, Bus37, 5500005555555559
+2, 22-01-2018 13:05:00, OFF, Stop2, Company1, Bus37, 5500005555555559`
 </p>
   
 <h2>Output:</h2>
-a csv describing total trip info e.g.:<\br>
-'''
-Started,Finished,DurationSecs,FromStopId,ToStopId,ChargeAmount,CompanyId,BusID,PAN,Status<\br>
-22-01-2018 13:00:00,22-01-2018 13:05:00,900,Stop1,Stop2,$3.25,Company1,B37,5500005555555559,COMPLETED<\br>
-'''
+<p>a csv describing total trip info e.g.:
+<p>Started,Finished,DurationSecs,FromStopId,ToStopId,ChargeAmount,CompanyId,BusID,PAN,Status<\br>
+<p>22-01-2018 13:00:00,22-01-2018 13:05:00,900,Stop1,Stop2,$3.25,Company1,B37,5500005555555559,COMPLETED<\br>
 
 <h2>Extra info:</h2>
 - An incomplete trip (tap on but no tap off) will charge the maximum possible from the tap on station
