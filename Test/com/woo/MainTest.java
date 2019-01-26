@@ -47,7 +47,7 @@ public class MainTest {
 
         File file = new File(outputFilename);
         if(file.delete()){
-            System.out.println("Test file Trips.csv was cleaned at " + baseInputFilePath + "Trips.csv");
+            System.out.println("Test file Trips.csv was cleaned.");
         }
         else{
             System.out.println("unable to clean test files/No test files to clean");
@@ -86,7 +86,7 @@ public class MainTest {
     public void givenATapCSVFromStop1To2__ThenTheTripCSVShouldBeMade() throws IOException, ParseException {
 
         String inputFilename = baseInputFilePath + "Stop1To2.csv";
-        String expectedOutputFilename = baseExpectedOutputFilePath + "Trips.csv";
+        String expectedOutputFilename = baseExpectedOutputFilePath + "Stop1To2.csv";
 
         Main.main(new String[]{inputFilename});
 
@@ -101,7 +101,7 @@ public class MainTest {
     public void givenATapCSVFromStop1To3__ThenTheTripCSVShouldBeMade() throws IOException, ParseException {
 
         String inputFilename = baseInputFilePath + "Stop1To3.csv";
-        String expectedOutputFilename = baseExpectedOutputFilePath + "Trips.csv";
+        String expectedOutputFilename = baseExpectedOutputFilePath + "Stop1To3.csv";
 
         Main.main(new String[]{inputFilename});
 
@@ -116,7 +116,7 @@ public class MainTest {
     public void givenATapCSVFromStop2To3__ThenTheTripCSVShouldBeMade() throws IOException, ParseException {
 
         String inputFilename = baseInputFilePath + "Stop2To3.csv";
-        String expectedOutputFilename = baseExpectedOutputFilePath + "Trips.csv";
+        String expectedOutputFilename = baseExpectedOutputFilePath + "Stop2To3.csv";
 
         Main.main(new String[]{inputFilename});
 

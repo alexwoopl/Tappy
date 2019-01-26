@@ -103,7 +103,7 @@ public class TripOutputHandlerTest {
         testTrip.add(null);
         testTrip.add("$7.30");
         testTrip.add("Company1");
-        testTrip.add("B37");
+        testTrip.add("Bus37");
         testTrip.add("5500005555555559");
         testTrip.add("INCOMPLETE");
         testData.add(testTrip);
@@ -116,7 +116,7 @@ public class TripOutputHandlerTest {
         testTrip2.add(null);
         testTrip2.add("$5.50");
         testTrip2.add("Company1");
-        testTrip2.add("B37");
+        testTrip2.add("Bus37");
         testTrip2.add("5500005555555559");
         testTrip2.add("INCOMPLETE");
         testData.add(testTrip2);
@@ -129,7 +129,7 @@ public class TripOutputHandlerTest {
         testTrip3.add(null);
         testTrip3.add("$7.30");
         testTrip3.add("Company1");
-        testTrip3.add("B37");
+        testTrip3.add("Bus37");
         testTrip3.add("5500005555555559");
         testTrip3.add("INCOMPLETE");
         testData.add(testTrip3);

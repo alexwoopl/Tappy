@@ -8,6 +8,7 @@ import org.apache.commons.csv.CSVRecord;
 
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class TapToTripLogic implements ITapToTripLogic {
@@ -125,6 +126,9 @@ public class TapToTripLogic implements ITapToTripLogic {
      * @param tapsBeingProcessed - left over records to be added as incomplete.
      */
     private void addUnpairedTapsAsIncompleteTrips(List<Trip> unformattedTrips, List<CSVRecord> tapsBeingProcessed) {
+        //The tapsBeingProcess was being added to from the front so we have to reverse to get the desired order
+        Collections.reverse(tapsBeingProcessed);
+
         if(!tapsBeingProcessed.isEmpty()){
             for(CSVRecord record : tapsBeingProcessed) {
                 Trip trip = new Trip();

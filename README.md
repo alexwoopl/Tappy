@@ -25,8 +25,8 @@ ID, DateTimeUTC, TapType, StopId, CompanyId, BusID, PAN
 Output:
 a csv describing total trip info e.g.:
 '''
-Started, Finished, DurationSecs, FromStopId, ToStopId, ChargeAmount, CompanyId, BusID, PAN, Status
-22-01-2018 13:00:00, 22-01-2018 13:05:00, 900, Stop1, Stop2, $3.25, Company1, B37, 5500005555555559, COMPLETED
+Started,Finished,DurationSecs,FromStopId,ToStopId,ChargeAmount,CompanyId,BusID,PAN,Status
+22-01-2018 13:00:00,22-01-2018 13:05:00,900,Stop1,Stop2,$3.25,Company1,B37,5500005555555559,COMPLETED
 '''
 
 Extra info:
@@ -36,16 +36,14 @@ Extra info:
 
 Assumptions:
 - A user will never tap off without tapping on first.
-- An input csv is all on the same day
+- An input csv is all on the same day (This seem like a daily batch job that would run)
 - The input is always in chronological order.
-- Any Tap on, that has no tap off, will be considered incomplete!
 - When tapping on and then off the user's company ID, bus ID and PAN will not change. (i.e. If those 3 match between and ON and OFF tap then it will be one "trip")
-- The input contains complete information (that is if a user taps on in the input but not off we assume an incomplete ride and another input file wont have 'redeeming' information)
 - The input file will be of reasonable length (I will not put a length restriction)
-- An incomplete ride will output ""<i.e. and empty string> for 'duration', 'Finished' and 'ToStopId'
-- All error messages should be printed to console
+- An incomplete ride will output ""<i.e. an empty string> for 'duration', 'Finished' and 'ToStopId'
+- All error messages should be printed to console instead of logging
 - If a CSV is given it will be correctly formatted and with valid data (content and filename valid and existing).
-- The output file is always at source and named "Trips.csv".
+- The output file is ordered by endTime with INCOMPLETE trips at the end.
 
 Tests supporting info:
 Link for test card numbers - http://support.worldpay.com/support/kb/bg/testandgolive/tgl5103.html
