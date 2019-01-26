@@ -2,7 +2,7 @@
 
 <h2>NOTE:</h2>
 <p>I used the apache commons library for CSV reading/writing purposes, as this has a free use license. </p>
-<p>I could have created a couple classes for creating the CSV processing but I didn't feel this added much value and is a problem that has already been solved!</p>
+<p>I could have created a couple classes for the CSV processing but I didn't feel this added much value and is a problem that has already been solved!</p>
 <p>I believe in using libraries instead of solving issues that have already been solved, especially if they're free.</p>
 
   
@@ -17,13 +17,13 @@
 
 
 <h2>Input:</h2>
-<p>a csv describing a series of tap activities e.g.:
+<p>A csv describing a series of tap activities e.g.:
 <p>ID, DateTimeUTC, TapType, StopId, CompanyId, BusID, PAN</p>
 <p>1, 22-01-2018 13:00:00, ON, Stop1, Company1, Bus37, 5500005555555559</p>
 <p>2, 22-01-2018 13:05:00, OFF, Stop2, Company1, Bus37, 5500005555555559</p>
   
 <h2>Output:</h2>
-<p>a csv describing total trip info e.g.:</p>
+<p>A csv describing total trip info e.g.:</p>
 <p>Started,Finished,DurationSecs,FromStopId,ToStopId,ChargeAmount,CompanyId,BusID,PAN,Status</p>
 <p>22-01-2018 13:00:00,22-01-2018 13:05:00,900,Stop1,Stop2,$3.25,Company1,B37,5500005555555559,COMPLETED</p>
 
@@ -41,7 +41,7 @@
 <p>- An incomplete ride will output ""(i.e. an empty string) for 'duration', 'Finished' and 'ToStopId'</p>
 <p>- All error messages should be printed to console instead of logging</p>
 <p>- If a CSV is given it will be correctly formatted and with valid data (content and filename valid and existing).</p>
-<p>- The output file is ordered by 'Tap off time' with INCOMPLETE trips at the end.</p>
+<p>- The output file is ordered by 'Tap off time' so INCOMPLETE trips will be at the end.(As they have no tap off time)</p>
 
 <h2>Tests supporting info:</h2></p>
 <p>Link for test card numbers - http://support.worldpay.com/support/kb/bg/testandgolive/tgl5103.html</p>
