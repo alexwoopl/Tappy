@@ -8,15 +8,14 @@ I believe in using libraries instead of solving issues that have already been so
 </p>
   
 <h2>Spec:</h2>
-<p>
-There are 3 stations;(1, 2 and 3)
-You "tap on" at the starting station and "tap off" at the end station.
-From station to station has different costs(same in both directions):
-1 <=> 2: $3.25
-1 <=> 3: $7.30
-2 <=> 3: $5.50
-NUM <=> SAME NUM: 0
-</p>
+<p>There are 3 stations;(1, 2 and 3)</p>
+<p>You "tap on" at the starting station and "tap off" at the end station.</p>
+<p>From station to station has different costs(same in both directions):</p>
+<p>1 <=> 2: $3.25</p>
+<p>1 <=> 3: $7.30</p>
+<p>2 <=> 3: $5.50</p>
+<p>NUM <=> SAME NUM: 0</p>
+
 
 <h2>Input:</h2>
 a csv describing a series of tap activities e.g.:
