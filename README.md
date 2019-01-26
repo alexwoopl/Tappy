@@ -18,10 +18,9 @@
 
 <h2>Input:</h2>
 <p>a csv describing a series of tap activities e.g.:
-<p>ID, DateTimeUTC, TapType, StopId, CompanyId, BusID, PAN
+<p>ID, DateTimeUTC, TapType, StopId, CompanyId, BusID, PAN</p>
 `1, 22-01-2018 13:00:00, ON, Stop1, Company1, Bus37, 5500005555555559
 2, 22-01-2018 13:05:00, OFF, Stop2, Company1, Bus37, 5500005555555559`
-</p>
   
 <h2>Output:</h2>
 <p>a csv describing total trip info e.g.:
