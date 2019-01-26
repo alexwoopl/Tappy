@@ -19,17 +19,17 @@
 <h2>Input:</h2>
 <p>a csv describing a series of tap activities e.g.:
 <p>ID, DateTimeUTC, TapType, StopId, CompanyId, BusID, PAN</p>
-`1, 22-01-2018 13:00:00, ON, Stop1, Company1, Bus37, 5500005555555559
-2, 22-01-2018 13:05:00, OFF, Stop2, Company1, Bus37, 5500005555555559`
+<p>1, 22-01-2018 13:00:00, ON, Stop1, Company1, Bus37, 5500005555555559</p>
+<p>2, 22-01-2018 13:05:00, OFF, Stop2, Company1, Bus37, 5500005555555559</p>
   
 <h2>Output:</h2>
-<p>a csv describing total trip info e.g.:
-<p>Started,Finished,DurationSecs,FromStopId,ToStopId,ChargeAmount,CompanyId,BusID,PAN,Status<\br>
-<p>22-01-2018 13:00:00,22-01-2018 13:05:00,900,Stop1,Stop2,$3.25,Company1,B37,5500005555555559,COMPLETED<\br>
+<p>a csv describing total trip info e.g.:</p>
+<p>Started,Finished,DurationSecs,FromStopId,ToStopId,ChargeAmount,CompanyId,BusID,PAN,Status</p>
+<p>22-01-2018 13:00:00,22-01-2018 13:05:00,900,Stop1,Stop2,$3.25,Company1,B37,5500005555555559,COMPLETED</p>
 
 <h2>Extra info:</h2>
-- An incomplete trip (tap on but no tap off) will charge the maximum possible from the tap on station
-- Tapping on and off at the same station is a cancelled trip with no charge (time stamp doesn't matter)
+* An incomplete trip (tap on but no tap off) will charge the maximum possible from the tap on station
+* Tapping on and off at the same station is a cancelled trip with no charge (time stamp doesn't matter)
 
 
 <h2>Assumptions:</h2>
